@@ -4,24 +4,6 @@
 
 #include "utils.h"
 
-#define FILENAME "input"
-
-void premPartie(FILE *ptr);
-void deuxPartie(FILE *ptr);
-
-int main()
-{
-  FILE *ptr = fopen(FILENAME, "r");
-  if (ptr == NULL)
-    return 1;
-
-  //premPartie(ptr);
-  deuxPartie(ptr);
-
-  fclose(ptr);
-  return 0;
-}
-
 void deuxPartie(FILE *ptr)
 {
   int find = 0, tmp;
