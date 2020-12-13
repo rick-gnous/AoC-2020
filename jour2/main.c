@@ -1,29 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define FILENAME "input"
-
-void premPartie(FILE *ptr);
-void deuxPartie(FILE *ptr);
-
-
-int main()
-{
-  FILE *ptr = fopen(FILENAME, "r");
-  if (ptr == NULL)
-  {
-    return 1;
-  }
-
-  // commentez la première partie quand vout voulez exécuter la deuxième
-  // le curseur de lecture du fichier reste à la fin
-  //premPartie(ptr);
-  deuxPartie(ptr);
-
-  fclose(ptr);
-  return 0;
-}
-
 void deuxPartie(FILE *ptr)
 {
   int bornInf, bornSup;
