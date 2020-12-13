@@ -8,4 +8,4 @@ Le code pour chaque jour est mis dans un dossier avec le fichier `input` contena
 
 ## Utilisation
 
-Il suffit de compiler le fichier C avec `gcc fichier.c` puis ensuite faire `./a.out` pour pouvoir exécuter le programme. Si vous voulez utiliser un autre fichier, il faut changer son nom et son nombre de ligne dans le `#define`.
+Il faut utiliser le fichier `make.sh` pour compiler le jour voulu. Il suffit d’exécuter ensuite le `turbo_main` pour pouvoir lancer le programme.
