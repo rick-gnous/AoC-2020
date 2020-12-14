@@ -6,7 +6,7 @@
 
 void deux_partie(FILE *ptr)
 {
-  int find = 0, tmp, check_line;
+  int find = 0, tmp;
   int nb_data = 0; // est incrémenté si arg bon
   // ne pas changer l’ordre des deux tableaux sinon ça casse (jsp pk)
   char value[10];
@@ -68,8 +68,7 @@ void deux_partie(FILE *ptr)
       }
     }
 
-    check_line = check_void_line(ptr);
-    if (check_line)
+    if (check_void_line(ptr))
     {
       if (nb_data == 7)
         find++;
@@ -84,7 +83,7 @@ void deux_partie(FILE *ptr)
 
 void prem_partie(FILE *ptr)
 {
-  int find = 0, check_line;
+  int find = 0;
   int nb_data = 0, cid = 0;
   char word[256];
   fscanf(ptr, "%s", word);
@@ -96,8 +95,7 @@ void prem_partie(FILE *ptr)
     if (!strncmp(word, "cid", 3))
       cid = 1;
 
-    check_line = check_void_line(ptr);
-    if (check_line)
+    if (check_void_line(ptr))
     {
       if ((nb_data == 7 && !cid) || nb_data == 8)
         find++;
