@@ -4,13 +4,12 @@
 
 #include "utils.h"
 
-void deuxPartie(FILE *ptr)
+void deux_partie(FILE *ptr)
 {
-  int find = 0, tmp;
-  int nbData = 0; // est incrémenté si arg bon
-  char checkLigne[2]; // vérifie 2 lignes plus loin pour détecter ligne vide
-  char value[10];
+  int find = 0, tmp, check_line;
+  int nb_data = 0; // est incrémenté si arg bon
   char key[3];
+  char value[10];
   char *tmpChar = NULL;
   fscanf(ptr, "%s:%s", key, value);
 
@@ -20,39 +19,39 @@ void deuxPartie(FILE *ptr)
     {
       tmp = sub_digit(value);
       if (tmp >= 1920 && tmp <= 2002)
-        nbData++;
+        nb_data++;
     }
     else if (!strncmp(key, "iyr", 3)) 
     {
       tmp = sub_digit(value);
       if (tmp >= 2010 && tmp <= 2020)
-        nbData++;
+        nb_data++;
     }
     else if (!strncmp(key, "eyr", 3)) 
     {
       tmp = sub_digit(value);
       if (tmp >= 2020 && tmp <= 2030)
-        nbData++;
+        nb_data++;
     }
     else if (!strncmp(key, "hgt", 3)) 
     {
       int checkH = sub_digit(value);
 
       if (strstr(value, "cm") != NULL && checkH >= 150 && checkH <= 193)
-        nbData++;
+        nb_data++;
       else if (strstr(value, "in") != NULL && checkH >= 59 && checkH <= 76)
-        nbData++;
+        nb_data++;
     }
     else if (!strncmp(key, "ecl", 3)) 
     {
       if (check_ecl(value))
-        nbData++;
+        nb_data++;
     } 
     else if (!strncmp(key, "pid", 3)) 
     {
       tmpChar = strpbrk(value, "0123456789");
       if (strspn(tmpChar, "0123456789") == 9)
-        nbData++;
+        nb_data++;
     }
     else if (!strncmp(key, "hcl", 3))
     {
@@ -64,56 +63,47 @@ void deuxPartie(FILE *ptr)
           i++;
 
         if (i == strlen(value))
-          nbData++;
+          nb_data++;
       }
     }
 
-    checkLigne[0] = getc(ptr);
-    checkLigne[1] = getc(ptr);
-    if (checkLigne[0] == '\n' && (checkLigne[1] == '\n' || checkLigne[1] == EOF))
+    check_line = check_void_line(ptr);
+    if (check_line)
     {
-      if (nbData == 7)
+      if (nb_data == 7)
         find++;
-      nbData = 0;
+      nb_data = 0;
     }
 
-    // reviens un caractère en arrière pour éviter de perdre des infos
-    // quand on check la présence d’une ligne vide
-    fseek(ptr, -1, SEEK_CUR); 
     fscanf(ptr, "%s:%s", key, value);
   }
   
   printf("%d bons passeports trouvés.\n", find);
 }
 
-void premPartie(FILE *ptr)
+void prem_partie(FILE *ptr)
 {
-  int find = 0;
-  int nbData = 0, cid = 0;
-  char checkLigne[2]; // vérifie 2 lignes plus loin pour détecter ligne vide
+  int find = 0, check_line;
+  int nb_data = 0, cid = 0;
   char word[256];
   fscanf(ptr, "%s", word);
 
   while (!feof(ptr))
   {
-    nbData++;
+    nb_data++;
 
     if (!strncmp(word, "cid", 3))
       cid = 1;
 
-    checkLigne[0] = getc(ptr);
-    checkLigne[1] = getc(ptr);
-    if (checkLigne[0] == '\n' && (checkLigne[1] == '\n' || checkLigne[1] == EOF))
+    check_line = check_void_line(ptr);
+    if (check_line)
     {
-      if ((nbData == 7 && !cid) || nbData == 8)
+      if ((nb_data == 7 && !cid) || nb_data == 8)
         find++;
-      nbData = 0;
+      nb_data = 0;
       cid = 0;
     }
 
-    // reviens un caractère en arrière pour éviter de perdre des infos
-    // quand on check la présence d’une ligne vide
-    fseek(ptr, -1, SEEK_CUR); 
     fscanf(ptr, "%s", word);
   }
   
