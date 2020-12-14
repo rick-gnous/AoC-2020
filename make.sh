@@ -1,6 +1,6 @@
 #!/bin/bash
 
-jour=0
+jour=${1:-0}
 while [ $jour -le 0 ] || [ $jour -ge 25 ]
 do
     read -p "Indiquez le jour à compiler : " jour
