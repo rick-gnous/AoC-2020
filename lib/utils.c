@@ -63,6 +63,8 @@ int check_void_line(FILE *ptr)
   if (check_line[0] == '\n' && (check_line[1] == '\n' || check_line[1] == EOF))
     ret = 1;
 
+  // reviens un caractère en arrière pour éviter de perdre des infos
+  // quand on check la présence d’une ligne vide
   fseek(ptr, -1, SEEK_CUR);
 
   return ret;
