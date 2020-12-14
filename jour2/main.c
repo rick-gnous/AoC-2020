@@ -1,59 +1,59 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void deuxPartie(FILE *ptr)
+void deux_partie(FILE *ptr)
 {
-  int bornInf, bornSup;
+  int born_inf, born_sup;
   int find = 0;
-  char speChar;
+  char spe_char;
   char word[256];
 
-  fscanf(ptr, "%d-%d %c: %s", &bornInf, &bornSup, &speChar, word);
+  fscanf(ptr, "%d-%d %c: %s", &born_inf, &born_sup, &spe_char, word);
 
   while (!feof(ptr)) 
   {
-    if ((word[bornInf - 1] == speChar && word[bornSup - 1] != speChar)
-      || (word[bornInf - 1] != speChar && word[bornSup - 1] == speChar))
+    if ((word[born_inf - 1] == spe_char && word[born_sup - 1] != spe_char)
+      || (word[born_inf - 1] != spe_char && word[born_sup - 1] == spe_char))
     {
       find++;
     }
     
-    fscanf(ptr, "%d-%d %c: %s", &bornInf, &bornSup, &speChar, word);
+    fscanf(ptr, "%d-%d %c: %s", &born_inf, &born_sup, &spe_char, word);
   }
 
   printf("%d bons mdp trouvés.\n", find);
 }
 
-void premPartie(FILE *ptr)
+void prem_partie(FILE *ptr)
 {
-  int bornInf, bornSup, i, nbOcc;
+  int born_inf, born_sup, i, nbOcc;
   int find = 0;
-  char speChar, readChar;
+  char spe_char, read_char;
   char word[256];
 
-  fscanf(ptr, "%d-%d %c: %s", &bornInf, &bornSup, &speChar, word);
+  fscanf(ptr, "%d-%d %c: %s", &born_inf, &born_sup, &spe_char, word);
   while (!feof(ptr)) 
   {
     i = 0;
     nbOcc = 0;
-    readChar = word[i];
-    while (readChar != '\0')
+    read_char = word[i];
+    while (read_char != '\0')
     {
-      if (readChar == speChar)
+      if (read_char == spe_char)
       {
         nbOcc++;
       }
 
       i++;
-      readChar = word[i];
+      read_char = word[i];
     }
 
-    if (nbOcc >= bornInf && nbOcc <= bornSup)
+    if (nbOcc >= born_inf && nbOcc <= born_sup)
     {
       find++;
     }
     
-    fscanf(ptr, "%d-%d %c: %s", &bornInf, &bornSup, &speChar, word);
+    fscanf(ptr, "%d-%d %c: %s", &born_inf, &born_sup, &spe_char, word);
   }
 
   printf("%d bons mdp trouvés.\n", find);

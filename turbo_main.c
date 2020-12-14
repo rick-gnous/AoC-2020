@@ -1,9 +1,10 @@
 #include <stdio.h>
 
 #define FILENAME "input"
+//#define FILENAME "test"
 
-void premPartie(FILE *ptr);
-void deuxPartie(FILE *ptr);
+void prem_partie(FILE *ptr);
+void deux_partie(FILE *ptr);
 
 int main()
 {
@@ -15,10 +16,10 @@ int main()
   }
 
   printf("Traitement de la première partie…\n");
-  premPartie(ptr);
+  prem_partie(ptr);
   fseek(ptr, 0, SEEK_SET);
   printf("\nTraitement de la deuxième partie…\n");
-  deuxPartie(ptr);
+  deux_partie(ptr);
 
   fclose(ptr);
   return 0;
