@@ -8,6 +8,7 @@ void deux_partie(FILE *ptr)
 {
   int find = 0, tmp, check_line;
   int nb_data = 0; // est incrémenté si arg bon
+  // ne pas changer l’ordre des deux tableaux sinon ça casse (jsp pk)
   char value[10];
   char key[3];
   char *tmp_char = NULL;
