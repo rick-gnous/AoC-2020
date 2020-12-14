@@ -1,17 +1,27 @@
 #include <stdio.h>
-
-#define FILENAME "input"
-//#define FILENAME "test"
+#include <stdlib.h>
 
 void prem_partie(FILE *ptr);
 void deux_partie(FILE *ptr);
 
-int main()
+int main(int argc, char *argv[])
 {
-  FILE *ptr = fopen(FILENAME, "r");
+  char *filename;
+  if (argc > 1)
+  {
+    char test[6] = "test";
+    filename = test;
+  }
+  else
+  {
+    char input[6] = "input";
+    filename = input;
+  }
+
+  FILE *ptr = fopen(filename, "r");
   if (ptr == NULL)
   {
-    printf("Le fichier %s n’existe pas.\n", FILENAME);
+    printf("Le fichier %s n’existe pas.\n", filename);
     return 1;
   }
 
