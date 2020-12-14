@@ -8,9 +8,9 @@ void deux_partie(FILE *ptr)
 {
   int find = 0, tmp, check_line;
   int nb_data = 0; // est incrémenté si arg bon
-  char key[3];
   char value[10];
-  char *tmpChar = NULL;
+  char key[3];
+  char *tmp_char = NULL;
   fscanf(ptr, "%s:%s", key, value);
 
   while (!feof(ptr))
@@ -49,8 +49,8 @@ void deux_partie(FILE *ptr)
     } 
     else if (!strncmp(key, "pid", 3)) 
     {
-      tmpChar = strpbrk(value, "0123456789");
-      if (strspn(tmpChar, "0123456789") == 9)
+      tmp_char = strpbrk(value, "0123456789");
+      if (strspn(tmp_char, "0123456789") == 9)
         nb_data++;
     }
     else if (!strncmp(key, "hcl", 3))
