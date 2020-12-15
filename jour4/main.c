@@ -9,7 +9,7 @@ void deux_partie(FILE *ptr)
   int find = 0, tmp;
   int nb_data = 0; // est incrémenté si arg bon
   // ne pas changer l’ordre des deux tableaux sinon ça casse (jsp pk)
-  char value[10];
+  char value[11];
   char key[3];
   char *tmp_char = NULL;
   fscanf(ptr, "%s:%s", key, value);
