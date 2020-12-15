@@ -63,7 +63,7 @@ void deux_partie(FILE *ptr)
         while (isalnum(value[i]) && value[i] != '\0')
           i++;
 
-        if (i == strlen(value))
+        if (i == (int) strlen(value))
           nb_data++;
       }
     }

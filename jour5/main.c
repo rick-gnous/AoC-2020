@@ -14,7 +14,7 @@ void premPartie(FILE *ptr)
     bornSupR = 127, bornSupC = 7;
     bornInfR = 0; bornInfC = 0;
 
-    for (int i = 0; i < strlen(str); i++)
+    for (int i = 0; i < (int) strlen(str); i++)
     {
       switch(str[i])
       {

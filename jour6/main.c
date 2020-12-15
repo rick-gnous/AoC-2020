@@ -14,7 +14,7 @@ void prem_partie(FILE *ptr)
 
   while (!feof(ptr))
   {
-    for (int i = 0; i < strlen(act_line); i++)
+    for (int i = 0; i < (int) strlen(act_line); i++)
     {
       tmp = act_line[i];
       if (strchr(find_char, act_line[i]) == NULL)
