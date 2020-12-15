@@ -1,22 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define FILETEST "test"
+#define FILEINPUT "input"
+
 void prem_partie(FILE *ptr);
 void deux_partie(FILE *ptr);
 
 int main(int argc, char *argv[])
 {
-  char *filename;
-  if (argc > 1)
-  {
-    char test[6] = "test";
-    filename = test;
-  }
-  else
-  {
-    char input[6] = "input";
-    filename = input;
-  }
+  char *filename = argc > 1 ? FILETEST : FILEINPUT;
 
   FILE *ptr = fopen(filename, "r");
   if (ptr == NULL)
