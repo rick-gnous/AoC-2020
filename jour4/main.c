@@ -7,8 +7,8 @@
 void deux_partie(FILE *ptr)
 {
   int find = 0, tmp;
-  int nb_data = 0; // est incrémenté si arg bon
-  // ne pas changer l’ordre des deux tableaux sinon ça casse (jsp pk)
+  int nb_data = 0; /* est incrémenté si arg bon */
+  /* ne pas changer l’ordre des deux tableaux sinon ça casse (jsp pk) */
   char value[11];
   char key[3];
   char *tmp_char = NULL;
@@ -56,7 +56,7 @@ void deux_partie(FILE *ptr)
     }
     else if (!strncmp(key, "hcl", 3))
     {
-      //comme le 1er char est :, on doit tout décaler de 1
+      /* comme le 1er char est :, on doit tout décaler de 1 */
       if (value[1] == '#' && strlen(value) == 8)
       {
         int i = 2;
