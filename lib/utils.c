@@ -69,3 +69,58 @@ int check_void_line(FILE *ptr)
 
   return ret;
 }
+
+/**
+ * sum_ptr(): make the sum of int in pointer
+ * @ptr: the pointer with int
+ * @size: the size of pointer
+ *
+ * 
+ *
+ * Return: the sum
+ */
+int sum_ptr(int *ptr, int size)
+{
+  int ret = 0;
+  for (int i = 0; i < size; i++)
+  {
+    ret += *(ptr + i);
+  }
+  return ret;
+}
+
+/**
+ * go_line(): positionne le curseur à la ligne donnée
+ * @ptr: le pointeur vers le fichier
+ * @line: le numéro de la ligne où mettre le curseur
+ *
+ * met le curseur à la ligne passée en paramètre
+ *
+ * Return: -1 quand pointeur null ou line négative
+ *          1 quand le curseur est à la fin du fichier
+ *          0 quand tout est ok
+ */
+int go_line(FILE *ptr, int line)
+{
+  int ret = -1;
+
+  if (ptr != NULL && line >= 0)
+  {
+    fseek(ptr, 0, SEEK_SET);
+    char *tmp = NULL;
+    size_t t = 0;
+    int i = 0;
+    while (i < line - 1 && !feof(ptr))
+    {
+      getline(&tmp, &t, ptr);
+      i++;
+    }
+
+    if (feof(ptr))
+      ret = 1;
+
+    free(tmp);
+  }
+
+  return ret;
+}
