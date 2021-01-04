@@ -3,7 +3,10 @@
 #include <ctype.h>
 #include <string.h>
 
-#define NBVAL 25
+#include "utils.h"
+
+#define NBVAL 25 /* Le nb de val à prendre, mit sur 5 pour les test */
+int prem; /* la réponse à la partie 1 */
 
 void prem_partie(FILE *ptr)
 {
@@ -42,10 +45,68 @@ void prem_partie(FILE *ptr)
     }
   }
 
-  printf("La première valeur ne correspondant pas est %d.", val);
+  prem = val;
+  printf("La première valeur ne correspondant pas est %d.\n", val);
 }
 
 void deux_partie(FILE *ptr)
 {
+  int *tab = NULL;
+  int size = 2, born_inf = 0, read;
+  int find = 0, somme;
+  while (!feof(ptr) && !find)
+  {
+    tab = (int *) malloc(sizeof(int) * size);
+    somme = 0;
+    for (int i = 0; i < size; i++)
+    {
+      fscanf(ptr, "%d", &read);
+      *(tab + i) = read;
+      somme += read;
+    }
+    born_inf++;
 
+
+    if (somme == prem)
+      find = 1;
+
+    while (!find && !feof(ptr))
+    {
+      somme = 0;
+      go_line(ptr, born_inf);
+      for (int i = 0; i < size; i++)
+      {
+        fscanf(ptr, "%d", &read);
+        *(tab + i) = read;
+        somme += read;
+      }
+
+      if (sum_ptr(tab, size) == prem)
+      {
+        find = 1;
+      }
+      born_inf++;
+    }   
+
+    if (!find)
+    {
+      born_inf = 0;
+      size++;
+      free(tab);
+      fseek(ptr, 0, SEEK_SET);
+    }
+  }
+
+  int inf = *tab, sup = *tab;
+  for (int i = 0; i < size; i++)
+  {
+    if (inf > *(tab+i))
+      inf = *(tab+i);
+    if (sup < *(tab+i))
+      sup = *(tab+i);
+  }
+  
+  int last = sup + inf;
+
+  printf("La première valeur ne correspondant pas est %d.\n", last); /*TODO modifier phrase*/
 }
