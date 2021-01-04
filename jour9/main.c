@@ -52,39 +52,21 @@ void prem_partie(FILE *ptr)
 void deux_partie(FILE *ptr)
 {
   int *tab = NULL;
-  int size = 2, born_inf = 0, read;
-  int find = 0, somme;
+  int size = 2, born_inf = 0;
+  int find = 0;
   while (!feof(ptr) && !find)
   {
     tab = (int *) malloc(sizeof(int) * size);
-    somme = 0;
-    for (int i = 0; i < size; i++)
-    {
-      fscanf(ptr, "%d", &read);
-      *(tab + i) = read;
-      somme += read;
-    }
-    born_inf++;
-
-
-    if (somme == prem)
-      find = 1;
 
     while (!find && !feof(ptr))
     {
-      somme = 0;
       go_line(ptr, born_inf);
       for (int i = 0; i < size; i++)
-      {
-        fscanf(ptr, "%d", &read);
-        *(tab + i) = read;
-        somme += read;
-      }
+        fscanf(ptr, "%d", (tab + i));
 
       if (sum_ptr(tab, size) == prem)
-      {
         find = 1;
-      }
+
       born_inf++;
     }   
 
@@ -106,7 +88,8 @@ void deux_partie(FILE *ptr)
       sup = *(tab+i);
   }
   
+  free(tab);
   int last = sup + inf;
 
-  printf("La première valeur ne correspondant pas est %d.\n", last); /*TODO modifier phrase*/
+  printf("La somme des nombres faisant %d est %d.\n", prem, last); 
 }
